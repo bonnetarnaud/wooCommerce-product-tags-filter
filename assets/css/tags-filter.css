@@ -1,0 +1,39 @@
+.tags_filter_box {
+    background-color: #F4F5F5;
+    padding: 30px;
+}
+
+.tags_filter_box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tags_filter_box ul li {
+    display : block;
+    margin: 2px 0;
+}
+
+.tags_filter_box ul li a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.tags_filter_box ul li a:hover,
+.tags_filter_box ul li.active a{
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--e-global-color-secondary );
+}
+
+.tags_filter_box ul li.active a {
+    margin-left: 0px;
+}
+
+.tags_filter_box ul li.active a:before {
+    content: "\f056";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
