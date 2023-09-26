@@ -37,3 +37,8 @@
     font-weight: 900;
     margin-right: 10px;
 }
+
+.tags_filter_box ul li.disabled a {
+    color: rgb(160, 160, 160);
+    text-decoration: line-through;
+}

@@ -59,7 +59,6 @@ class WooCommerce_Product_Tags_Filter_Widget extends WP_Widget
 
     public function get_product_tags_enabled()
     {
-
         $args = array(
             'post_type' => 'product',
             'posts_per_page' => -1, // Pour obtenir tous les produits
@@ -67,12 +66,11 @@ class WooCommerce_Product_Tags_Filter_Widget extends WP_Widget
         );
 
         $query = new WP_Query($args);
-
         if ($query->have_posts()) {
             $product_tags = array();
             while ($query->have_posts()) {
                 $query->the_post();
-                $product_tags = array_merge($product_tags, wp_get_post_terms(get_the_ID(), 'product_tag', array('fields' => 'ids')));
+                $product_tags = array_merge($product_tags, wp_get_post_terms(get_the_ID(), 'product_tag', array('fields' => 'slugs')));
             }
             wp_reset_postdata();
             return array_unique($product_tags);
@@ -119,7 +117,8 @@ class WooCommerce_Product_Tags_Filter_Widget extends WP_Widget
                         $tag_link = esc_url(add_query_arg($arr_params, home_url($wp->request)));
                         $link = (get_query_var('product_tag') == $tag->slug) ? get_permalink(wc_get_page_id('shop')) : $tag_link;
                         $class = '';
-                        if (!in_array($tag->term_id, $product_tags_enabled)) {
+
+                        if (!in_array($tag->slug, $product_tags_enabled)) {
                             $class = 'disabled ';
                             $link = '#';
                         }
@@ -150,3 +149,4 @@ function register_woocommerce_product_tags_filter_widget()
     register_widget('WooCommerce_Product_Tags_Filter_Widget');
 }
 add_action('widgets_init', 'register_woocommerce_product_tags_filter_widget');
+
