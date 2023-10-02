@@ -40,5 +40,7 @@
 
 .tags_filter_box ul li.disabled a {
     color: rgb(160, 160, 160);
+    cursor: default;
+    pointer-events: none;
     text-decoration: line-through;
 }
