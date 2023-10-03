@@ -120,12 +120,13 @@ class WooCommerce_Product_Tags_Filter_Widget extends WP_Widget
 
                         if (!in_array($tag->slug, $product_tags_enabled)) {
                             $class = 'disabled ';
-                            $link = '#';
+                            $link = preg_replace('/\?product_tag=.*/', '', $link);
                         }
                         if (get_query_var('product_tag') == $tag->slug) {
                             $class = 'active ';
+                            $parsed_url = parse_url($tag_link);
+                            $link = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $parsed_url['path'];
                         }
-
                         ?>
                         <li class="<?php echo $class ?>">
                             <a href="<?php echo  $link ?>">
