@@ -99,6 +99,7 @@ class WooCommerce_Product_Tags_Filter_Widget extends WP_Widget
 
                 <ul>
                     <?php
+                    $i = 0;
                     foreach ($product_tags as $tag) : ?>
                         <?php
                         global $wp;
@@ -127,6 +128,7 @@ class WooCommerce_Product_Tags_Filter_Widget extends WP_Widget
                             $parsed_url = parse_url($tag_link);
                             $link = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $parsed_url['path'];
                         }
+                        $i++;
                         ?>
                         <li class="<?php echo $class ?>">
                             <a href="<?php echo  $link ?>">
@@ -150,4 +152,3 @@ function register_woocommerce_product_tags_filter_widget()
     register_widget('WooCommerce_Product_Tags_Filter_Widget');
 }
 add_action('widgets_init', 'register_woocommerce_product_tags_filter_widget');
-
